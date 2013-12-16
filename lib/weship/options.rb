@@ -3,11 +3,11 @@ module Weship
   class Options
     include Weship::Error
 
-    # used to create options object in shipment construction
+    # creates options object for the shipment 
     # see https://weship.io/#docs section `shipments'
 
     def self.create(params)
-      # options is not required by default
+      # options are not required by default
       options = {}
 
       # merge label_type parameter if present. Default value is "pdf"
