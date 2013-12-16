@@ -118,6 +118,7 @@ w.show_package(1)
 #response
 {"package"=>
   {"title"=>"My new package",
+   "id"=>3,
    "length"=>2,
    "width"=>4,
    "height"=>5,
