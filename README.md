@@ -1,6 +1,6 @@
-# Smailex
+# Weship(io)
 
-TODO: Write a gem description
+That gem provides ruby bindings to weship(ip) API.
 
 ## Installation
 
