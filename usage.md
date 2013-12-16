@@ -229,9 +229,9 @@ w.get_rates(rates_w_my_package)
 ```
 Ответ сервера будет аналогичным.
 
-#Отправдения
+#Отправления
 
-## Создание отправдения
+## Создание отправления
 ```ruby
 #request
 
@@ -578,7 +578,7 @@ w.get_shipment('2751F9E9DB904C738D54FFB59A3D6D70')
     "href"=>
      "http://stage.weship.io/api/v1/shipments/2751F9E9DB904C738D54FFB59A3D6D70/track"}]}
 ```
-## Получение тарифов для одного шипмента
+## Получение тарифов для одного отправления
 ```ruby
 #request w.get_shipment_rates(:id)
 w.get_shipment_rates('2751F9E9DB904C738D54FFB59A3D6D70')
