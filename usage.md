@@ -144,7 +144,9 @@ w.delete_package(1)
 
 Empty response "204: no content" will be returned
 
+
 # Rates
+
 
 ```ruby
 #request
@@ -231,8 +233,49 @@ w.get_rates(rates)
 
 w.get_rates(rates_w_my_package)
 
+#response
+[{"rate"=>26.37,
+  "carrier"=>{"name"=>"FedEx", "service"=>"ground", "type"=>"WESHIP"},
+  "delivery_days"=>3},
+ {"rate"=>33.01,
+  "carrier"=>{"name"=>"UPS", "service"=>"ground", "type"=>"OWN"},
+  "delivery_days"=>4},
+ {"rate"=>54.48,
+  "carrier"=>{"name"=>"FedEx", "service"=>"3day", "type"=>"WESHIP"},
+  "delivery_days"=>3},
+ {"rate"=>64.48,
+  "carrier"=>{"name"=>"UPS", "service"=>"3day", "type"=>"OWN"},
+  "delivery_days"=>3},
+ {"rate"=>77.58,
+  "carrier"=>{"name"=>"FedEx", "service"=>"2day", "type"=>"WESHIP"},
+  "delivery_days"=>2},
+ {"rate"=>85.97,
+  "carrier"=>{"name"=>"UPS", "service"=>"2day", "type"=>"OWN"},
+  "delivery_days"=>2},
+ {"rate"=>88.07,
+  "carrier"=>{"name"=>"FedEx", "service"=>"2day_morning", "type"=>"WESHIP"},
+  "delivery_days"=>2},
+ {"rate"=>149.07,
+  "carrier"=>{"name"=>"FedEx", "service"=>"1day", "type"=>"WESHIP"},
+  "delivery_days"=>1},
+ {"rate"=>156.85,
+  "carrier"=>{"name"=>"UPS", "service"=>"1day", "type"=>"OWN"},
+  "delivery_days"=>1},
+ {"rate"=>164.0,
+  "carrier"=>{"name"=>"FedEx", "service"=>"1day_morning", "type"=>"WESHIP"},
+  "delivery_days"=>1},
+ {"rate"=>172.71,
+  "carrier"=>{"name"=>"UPS", "service"=>"1day_morning", "type"=>"OWN"},
+  "delivery_days"=>1},
+ {"rate"=>224.85,
+  "carrier"=>
+   {"name"=>"FedEx", "service"=>"1day_early_morning", "type"=>"WESHIP"},
+  "delivery_days"=>1},
+ {"rate"=>239.01,
+  "carrier"=>{"name"=>"UPS", "service"=>"1day_early_morning", "type"=>"OWN"},
+  "delivery_days"=>1}]
 ```
-Ответ сервера будет аналогичным.
+
 
 #Shipments
 
@@ -280,7 +323,6 @@ shipment = {
     },
     :options=> {
       :signature_type=> "adult",
-      :label_size=> "4X8",
       :label_type=> "pdf",
       :remarks=> "My test shipment",
       :saturday_delivery=> true
@@ -365,7 +407,6 @@ shipment_params =   {
     },
     :options=> {
       :signature_type=> "adult",
-      :label_size=> "4X6",
       :label_type=> "pdf",
       :remarks=> "My test shipment",
       :saturday_delivery=> true
