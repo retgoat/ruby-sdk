@@ -3,7 +3,7 @@ module Weship
   class Carrier
     include Weship::Error
 
-    # used to create carrier object in shipment construction
+    # creates carrier object for the shipment
     # see https://weship.io/#docs section `shipments'
     def self.create(params)
       carrier = {
