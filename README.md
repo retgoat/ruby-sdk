@@ -6,15 +6,13 @@ That gem provides ruby bindings to weship(ip) API.
 
 Add this line to your application's Gemfile:
 
-    gem 'weship'
+```
+gem 'weship', :git => 'git@github.com:weship/ruby-sdk.git'
+```
 
 And then execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install weship
+    $ bundle install
 
 ## Usage
 
