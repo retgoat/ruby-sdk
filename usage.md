@@ -1,3 +1,5 @@
+# Weship(io) ruby 
+
 All docs are [here](https://weship.io/#docs "API docs")
 
 # Authorization
@@ -31,7 +33,7 @@ w.validate_address(address)
 ```
 
 # Packages
-## Create package
+## Create the package
 
 ```ruby
 #request
@@ -58,7 +60,7 @@ w.create_package(package)
 
 ```
 
-## Edit package
+## Edit the package
 ```ruby
 #request
 
@@ -85,7 +87,7 @@ w.update_package(1, new_package)
 
 ```
 
-## View packages
+## View the packages
 ```ruby
 #request
 
@@ -131,7 +133,7 @@ w.show_package(1)
 
 ```
 
-##Delete package
+##Delete the package
 ```ruby
 #request w.delete_package(:id)
 w.delete_package(1)
