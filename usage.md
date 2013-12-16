@@ -4,7 +4,7 @@ All docs are [here](https://weship.io/#docs "API docs")
 
 # Authorization
 
-Obtain API keys here [here](https://weship.io/#apikeys
+Obtain API keys here [here](https://weship.io/#apikeys)
 
 ```ruby
 w = WeshipClient.new('YOUR_API_KEY')
