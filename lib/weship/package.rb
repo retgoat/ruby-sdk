@@ -38,17 +38,5 @@ module Weship
           single_package
         }
     end #construct
-
-
-    # used to track the shipment
-    # see https://weship.io/#docs section `tracking'
-    def self.track(params)
-      tracking = {
-        :carrier => params[:carrier],
-        :tracking_number => params[:tracking_number]
-      }
-      tracking
-    end#track
-
   end #class
 end #module

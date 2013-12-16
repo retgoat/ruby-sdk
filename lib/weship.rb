@@ -33,7 +33,9 @@ class WeshipClient
       :cancel => {:name => '/shipments/:id', :method => :delete},
       :buy => {:name => '/shipments/:id/buy', :method => :put},
       :purchase => {:name => '/shipments/purchase', :method => :post},
-      :rates=>{:name=>'/shipments/rates', :method => :post}
+      :rates =>{:name=>'/shipments/rates', :method => :post},
+      :rates_for_shipment =>{:name=>'/shipments/:id/rates', :method => :get},
+      :track => {:name => '/track', :method => :post}
     },
     :address =>{
       :validate => {:name => '/validate', :method => :post}
@@ -44,12 +46,10 @@ class WeshipClient
       :list => {:name => '/packages', :method => :get},
       :show => {:name => '/packages/:id', :method => :get},
       :delete => {:name => '/packages/:id', :method => :delete},
-      :track => {:name => '/track', :method => :post}
-
     }
   }
 
-  def initialize(_client_id = false, _use_stage = true)
+  def initialize(_client_id, _use_stage = true)
     @client_id = _client_id
     @api_url = (_use_stage) ? STAGE_API_URL : LIVE_API_URL
   end
@@ -62,8 +62,8 @@ class WeshipClient
       api_call(ENDPOINTS[:shipment][:create], shipment, {}, access_token=@client_id)
   end 
 
-  def get_rates(id)
-       api_call(ENDPOINTS[:shipment][:rates],false,{:id=>id}, access_token=@client_id)
+  def get_shipment_rates(id)
+       api_call(ENDPOINTS[:shipment][:rates_for_shipment],false,{:id=>id}, access_token=@client_id)
   end
 
   def get_shipment(id)
@@ -86,27 +86,21 @@ class WeshipClient
     api_call(ENDPOINTS[:shipment][:cancel], false, {:id=>id}, access_token=@client_id)
   end
 
-  def get_label(id)
-
-    order = get_order(id)
-    order['links'].each { |link|
-      if link["rel"] == "label"
-        data = open(link['href']).read
-        return data
-      end
-    }
+  def buy_shipment(id)
+    api_call(ENDPOINTS[:shipment][:buy], false,{:id=>id}, access_token=@client_id)
   end
 
-  def save_label(id, path)
-    
-    unless path
-      raise "No PATH specified"
-    end
-
-    label_data = get_label(id)
-    File.open("#{path}#{id}.pdf", "wb"){ |file| file.write label_data  }
-
+  def purchase_shipment(shipment_params)
+    shipment = Weship::Shipment.create(shipment_params)
+    api_call(ENDPOINTS[:shipment][:purchase], shipment, {}, access_token=@client_id)
   end
+
+
+  def track_shipment(tracking_params)
+    tracking = Weship::Shipment.track(tracking_params)
+    api_call(ENDPOINTS[:shipment][:track], tracking, {}, api_call = @client_id)
+  end
+
 #######
 #  Rates
 #######
@@ -142,10 +136,6 @@ end
     api_call(ENDPOINTS[:package][:delete], {},{:id=>id}, access_token=@client_id)
   end
 
-  def track_package(tracking_params)
-    tracking = Weship::Package.track(tracking_params)
-    api_call(ENDPOINTS[:package][:track], tracking, {}, api_call = @client_id)
-  end
 
 #######
 #  address
@@ -194,7 +184,7 @@ end
     request = Net::HTTP.new(url.host, url.port)
 
     request.read_timeout = 30
-    # request.use_ssl = true
+    request.use_ssl = true
     # make the call
     response = request.start {|http| http.request(call) }
     # returns JSON response as ruby hash
