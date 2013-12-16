@@ -6,7 +6,7 @@ That gem provides ruby bindings to weship(ip) API.
 
 Add this line to your application's Gemfile:
 
-    gem 'smailex'
+    gem 'weship'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install smailex
+    $ gem install weship
 
 ## Usage
 
