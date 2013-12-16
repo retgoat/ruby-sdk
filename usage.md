@@ -45,6 +45,7 @@ w.create_package(package)
 
 {"package"=>
   {"title"=>"My package",
+   "id"=3,
    "length"=>1,
    "width"=>3,
    "height"=>3,
