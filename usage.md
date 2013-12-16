@@ -1,13 +1,16 @@
-Документация [здесь](https://weship.io/#docs "API docs")
+All docs are [here](https://weship.io/#docs "API docs")
 
-# Инициализация
+# Authorization
+
+Obtain API keys here [here](https://weship.io/#apikeys
 
 ```ruby
-w = WeshipClient.new('APIKEY1234567890')
+w = WeshipClient.new('YOUR_API_KEY')
 ```
-В качестве параметра передаётся ключ API, который можно получить в личном кабинете: https://weship.io/#apikeys
 
-# Валидация адресов
+
+
+# Address validation
 ```ruby
 #request
   address = {
@@ -27,8 +30,8 @@ w.validate_address(address)
 #response
 ```
 
-# Коробки
-## Создание коробки
+# Packages
+## Create package
 
 ```ruby
 #request
@@ -55,7 +58,7 @@ w.create_package(package)
 
 ```
 
-## Редактирование коробки
+## Edit package
 ```ruby
 #request
 
@@ -82,7 +85,7 @@ w.update_package(1, new_package)
 
 ```
 
-## Получение спика коробок
+## View packages
 ```ruby
 #request
 
@@ -110,7 +113,7 @@ w.get_packages_list()
  "meta"=>{"count"=>2}}
 ```
 
-## Получение одной коробки
+## View specific package
 ```ruby
 #request w.show_package(:id)
 w.show_package(1)
@@ -128,7 +131,7 @@ w.show_package(1)
 
 ```
 
-##Удаление коробки
+##Delete package
 ```ruby
 #request w.delete_package(:id)
 w.delete_package(1)
@@ -137,9 +140,9 @@ w.delete_package(1)
  => nil
 ```
 
-При любом удалении ресурса сервер возвращает заголовок 204: no content
+Empty response "204: no content" will be returned
 
-# Получение rates
+# Rates
 
 ```ruby
 #request
@@ -203,7 +206,7 @@ w.get_rates(rates)
   "delivery_days"=>1}]
 
  ```
- В качестве коробки можно передать название уже созданной коробки:
+ Rates for specific package could be requested
  ```ruby
  #request
  rates_w_my_package = {
@@ -229,9 +232,9 @@ w.get_rates(rates_w_my_package)
 ```
 Ответ сервера будет аналогичным.
 
-#Отправления
+#Shipments
 
-## Создание отправления
+## Create shipment
 ```ruby
 #request
 
@@ -349,7 +352,7 @@ w.create_shipment(shipment)
      "http://stage.weship.io/api/v1/shipments/2751F9E9DB904C738D54FFB59A3D6D70/track"}]}
 ```
 
-## Редактирование отправления
+## Update the shipment
 ```ruby
 #request w.update_shipment(:id, params)
 shipment_params =   {
@@ -435,7 +438,7 @@ w.update_shipment('2751F9E9DB904C738D54FFB59A3D6D70',shipment_params)
      "http://stage.weship.io/api/v1/shipments/2751F9E9DB904C738D54FFB59A3D6D70/track"}]}
 ```
 
-## Получение списка отправлений
+## View shipments list
 ```ruby
 #request
 w.get_shipments_list()
@@ -508,7 +511,7 @@ w.get_shipments_list()
    ...
  "meta"=>{"count"=>8}}
  ```
- ## Получение одного отправления
+ ## View specific shipment
  ```ruby
 #request w.get_shipment(:id)
 w.get_shipment('2751F9E9DB904C738D54FFB59A3D6D70')
@@ -578,7 +581,7 @@ w.get_shipment('2751F9E9DB904C738D54FFB59A3D6D70')
     "href"=>
      "http://stage.weship.io/api/v1/shipments/2751F9E9DB904C738D54FFB59A3D6D70/track"}]}
 ```
-## Получение тарифов для одного отправления
+## Get shipment rates
 ```ruby
 #request w.get_shipment_rates(:id)
 w.get_shipment_rates('2751F9E9DB904C738D54FFB59A3D6D70')
@@ -625,7 +628,7 @@ w.get_shipment_rates('2751F9E9DB904C738D54FFB59A3D6D70')
  "meta"=>{"count"=>12}}
 ```
 
-## Покупка отправления
+## Purchase the shipment
 ```ruby
 #request w.buy_shipment(:id)
 
@@ -641,7 +644,7 @@ w.buy_shipment('E10C9D74F9AC4359B8AC2920BEE99448')
      "https://stage.weship.io/api/v1/packages/8215AEB4C67C4C0D8C197C48CDEF5883/label"}]}
 ```
 
-## Быстрая покупка отправления
+## One request shipment purchase
 ```ruby
 #request
 shipment = {:from=>
@@ -679,7 +682,7 @@ w.purchase_shipment(shipment)
      "http://stage.weship.io/api/v1/packages/2495D7F779C544C798B68C73F8AED4CE/label"}]}
  => {"labels"=>[{"tracking_number"=>"1Z426F0W1393884237", "label_file"=>"http://stage.weship.io/api/v1/packages/2495D7F779C544C798B68C73F8AED4CE/label"}]} 
 ```
-## Отслеживание отправления
+## Track the shipment
 ```ruby
 #request
 track = {
