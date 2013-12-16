@@ -3,7 +3,7 @@ module Weship
   class Rate
     include Weship::Error
 
-    # used for getting simple rates
+    # used to getting simple rates
     # see https://weship.io/#docs section `rates & transit time'
     
     def self.get(params)

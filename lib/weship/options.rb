@@ -3,7 +3,7 @@ module Weship
   class Options
     include Weship::Error
 
-    # used for create options object in shipment construction
+    # used to create options object in shipment construction
     # see https://weship.io/#docs section `shipments'
 
     def self.create(params)

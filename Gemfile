@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in smailex.gemspec
+# Specify your gem's dependencies in weship.gemspec
 gemspec

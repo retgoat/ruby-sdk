@@ -3,7 +3,7 @@ module Weship
   class Package
     include Weship::Error
 
-    # creates package for user
+    # used to create package for user
     # see https://weship.io/#docs section `packages'
     def self.create(params)
       package_spec = {
@@ -31,7 +31,7 @@ module Weship
     end #create
 
 
-    # used for create packages array in shipment construction
+    # used to create packages array in shipment construction
     # see https://weship.io/#docs section `shipments'
     def self.construct(params)
         packages_array = params.map{|single_package|
@@ -40,7 +40,7 @@ module Weship
     end #construct
 
 
-    # used for track package
+    # used to track package
     # see https://weship.io/#docs section `tracking'
     def self.track(params)
       tracking = {

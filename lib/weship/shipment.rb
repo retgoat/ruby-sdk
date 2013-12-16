@@ -6,8 +6,11 @@ module Weship
   class Shipment
     include Weship::Error
 
+    # used to create shipment object
+    # see https://weship.io/#docs section `shipments'
+
     def self.create(params={})
-      # create packages for shipment
+      # used to create packages for shipment
       if params[:package_type] == "box"
         packages = Weship::Package.construct(params[:packages])
       end

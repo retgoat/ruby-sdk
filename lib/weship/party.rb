@@ -3,7 +3,7 @@ module Weship
   class Party
     include Weship::Error
 
-    # used for create party (from, to) objects in shipment construction
+    # used to create party (from, to) objects in shipment construction
     # see https://weship.io/#docs section `shipments'
     def self.create(params, validate=false)
       party = {
